@@ -1,0 +1,1 @@
+xcopy C:\Users\jh\AndroidStudioProjects\MyRoadChecker\app\build\outputs\apk\app-release.apk C:\Users\jh\AndroidStudioProjects\MyRoadChecker\ /Y /Q

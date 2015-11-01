@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyRoadChecker</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="start">Starta</string>
+    <string name="started">Startad</string>
+    <string name="syncing">Synkar</string>
+    <string name="stop">Stoppa</string>
+    <string name="click">Nu</string>
+    <string name="full">Graf</string>
+    <string name="map">Karta</string>
+    <string name="test_db">Testa</string>
+    <string name="sync">Synka</string>
+    <string name="reset">Återställ</string>
+    <string name="yes">Ja!</string>
+    <string name="no">Nej!!</string>
+    <string name="reset_db">Är du säker på att du vill återställa?\r\nDet kommer att rensa databasen och återställa dina inställningar!!</string>
+    <string name="title_activity_fullscreen"></string>
+    <string name="title_activity_maps">Karta</string>
+    <string name="btactivate">Starta när en viss klient ansluts genom bluetooth.</string>
+    <string name="wifioverride">Synka även utan wifi.</string>
+    <string name="selecteddevice">Vald klient:</string>
+    <string name="gps_network_not_enabled">GPS är inte aktiverad!</string>
+    <string name="open_location_settings">Öppna platsinställningar.</string>
+    <string name="wifi_not_enabled">Wifi är inte aktiverat..</string>
+    <string name="open_wifi_settings">Öppna Wifi-inställningar.</string>
+
+    <string name="Cancel">Avbryt</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_speed_limit">Speed limit (km/h)</string>
+    <string name="pref_title_display_name">Limit to log</string>
+    <string name="pref_interval">Time interval(s)</string>
+
+</resources>

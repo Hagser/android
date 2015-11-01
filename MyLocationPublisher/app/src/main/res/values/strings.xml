@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyLocationPublisher</string>
+
+    <string name="stop">STOP</string>
+    <string name="start">START</string>
+    <string name="action_settings">Settings</string>
+    <string name="web">web</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_detailed_location">Detailed</string>
+    <string name="pref_description_detailed_location">Show detailed information of your location (refresh rate 1 minute and 100 meters).</string>
+
+    <string name="pref_minimal_location">Minimal</string>
+    <string name="pref_description_minimal_location">Show minimal information of your location (refresh rate 6 minutes and 1000 meters and only postal code).</string>
+
+    <string name="pref_description_medium_location">If no switch is on medium information of your location will be shown (refresh rate 3 minutes and 500 meters).</string>
+
+</resources>

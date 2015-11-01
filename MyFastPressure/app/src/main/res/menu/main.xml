@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/start_service"
+        android:orderInCategory="10"
+        android:showAsAction="never" android:title="@string/start"/>
+    <item
+        android:id="@+id/calibrate"
+        android:orderInCategory="100"
+        android:showAsAction="never" android:title="@string/calibrate"/>
+    <item
+        android:id="@+id/stop_service"
+        android:orderInCategory="1000"
+        android:showAsAction="never" android:title="@string/stop"/>
+
+</menu>

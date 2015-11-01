@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CompassActivity">
+
+    <ImageView
+        android:id="@+id/bearing"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:src="@drawable/ic_launcher" />
+
+	<TextView
+	    android:id="@+id/bearingtext"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/mybearing"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:src="@drawable/ic_launcher" />
+
+	<TextView
+	    android:id="@+id/mybearingtext"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+    
+</LinearLayout>

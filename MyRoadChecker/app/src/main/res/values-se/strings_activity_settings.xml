@@ -1,0 +1,13 @@
+<resources>
+    <string name="title_activity_settings">Inställningar</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Allmänt</string>
+
+    <string name="pref_speed_limit">Hastighetsgräns (km/h)</string>
+    <string name="pref_title_display_name">Gräns att logga</string>
+    <string name="pref_interval">Tidsinterval(s)</string>
+
+</resources>

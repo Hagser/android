@@ -1,0 +1,7 @@
+*.class
+*/app/build/*
+*/build/intermediates/*
+*/import-summary.txt
+*cache.properties*
+*.bin
+*.*apk

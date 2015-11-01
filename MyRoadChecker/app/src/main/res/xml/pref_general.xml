@@ -1,0 +1,45 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="speedlimit"
+        android:title="@string/pref_speed_limit"
+        android:defaultValue="1"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="difflimit"
+        android:title="@string/pref_title_display_name"
+        android:defaultValue="1"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="timelimit"
+        android:title="@string/pref_interval"
+        android:defaultValue="60"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <CheckBoxPreference
+        android:key="wifioverride"
+        android:title="@string/wifioverride"
+        android:enabled="true"/>
+
+    <CheckBoxPreference
+        android:key="btactivate"
+        android:title="@string/btactivate"
+        android:enabled="true"/>
+
+    <se.hagser.myroadchecker.BluetoothDevicePreference
+        android:key="device"
+        android:title="@string/selecteddevice"/>
+
+
+</PreferenceScreen>

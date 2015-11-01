@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" tools:context=".MainActivity" android:keepScreenOn="true">
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:id="@+id/sensor_data" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:background="@color/black_overlay" android:orientation="vertical"
+        android:id="@+id/canvas" />
+</LinearLayout>
+
