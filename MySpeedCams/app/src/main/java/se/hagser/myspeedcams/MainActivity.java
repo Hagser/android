@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	            map.put(KEY_BEARING,180- (results.length>1? Math.round(results[1]):0)+"");
 	            map.put(KEY_MYBEARING,180- (results.length>1? Math.round(results[1]):0)+"");
 	    		
-	            if(!balarm && fdist<1000 && !alertList.contains(name))
+	            if(fdist<1000 && !alertList.contains(name))
 	            {
 	            	balarm=true;
 	            	alertList.add(name);
