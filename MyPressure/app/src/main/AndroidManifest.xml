@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="se.hagser.mypressure"
-    android:installLocation="preferExternal"
-    android:versionCode="3"
-    android:versionName="1.2" >
+    android:installLocation="preferExternal" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="22" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" / -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -19,9 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -44,9 +42,11 @@
             android:process=":mypressureprocess" />
 
         <receiver
-            android:name=".BootReciever"
-            android:enabled="true"
-            android:exported="true" >
+            android:name=".BootReceiver"
+            android:enabled="true" android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
     </application>
 

@@ -1,5 +1,6 @@
 package se.hagser.mypressure;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -95,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	                + "val FLOAT,"
 	                + "lat FLOAT,"
 	                + "lng FLOAT,"
-	                + "alt FLOAT);";
+	                + "alt FLOAT,sent BIT);";
 		    	Log.i(tag, "CREATE_TABLE:"+CREATE_TABLE);
 		    	myDB.execSQL(CREATE_TABLE);
 		    	myDB.setTransactionSuccessful();
@@ -125,7 +126,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 			if(findTable(TABLE).equals(TABLE)) {
 
 				SQLiteDatabase database = this.getMyDB();
-				lret=database.delete(TABLE,"id in ("+ids.substring(1)+")",null);
+				ContentValues contentValues = new ContentValues();
+				contentValues.put("sent","1");
+				lret=database.update(TABLE,contentValues, "id in (" + ids.substring(1) + ")",null);
+				//lret=database.delete(TABLE,"id in ("+ids.substring(1)+")",null);
 				database.close();
 
 			}
@@ -149,7 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 			this.openDataBase();
 			if(findTable(TABLE).equals(TABLE)) {
-				String selectQuery = "SELECT distinct id,at,val,lat,lng,alt FROM " + TABLE;
+				String selectQuery = "SELECT distinct id,at,val,lat,lng,alt FROM " + TABLE + " where sent is null";
 				SQLiteDatabase database = this.getMyDB();
 				cursor = database.rawQuery(selectQuery, null);
 				if (cursor.moveToFirst()) {

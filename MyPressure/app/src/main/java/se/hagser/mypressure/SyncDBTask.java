@@ -19,9 +19,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.GZIPOutputStream;
 
-/**
- * Created by jh on 2015-07-17.
- */
 public class SyncDBTask extends AsyncTask<Integer, Integer, Boolean> {
 
 	DatabaseHelper mDbHelper = null;
@@ -31,7 +28,6 @@ public class SyncDBTask extends AsyncTask<Integer, Integer, Boolean> {
 	protected void onProgressUpdate(Integer... progress) {
 
 	}
-
 
 	@Override
 	protected Boolean doInBackground(Integer... params) {
@@ -69,15 +65,11 @@ public class SyncDBTask extends AsyncTask<Integer, Integer, Boolean> {
 
 		String response = "";
 		String url = "http://php.hagser.se/insert_pressure.php";
-
 		Log.i(MyPressureService.NOTIFICATION+"sc",url);
 		DefaultHttpClient client = new DefaultHttpClient();
-
 		HttpPost httpPost = new HttpPost(url);
 		ByteArrayEntity byteArrayEntity;
-
 		String json;
-
 		json = mDbHelper.composeJSONfromSQLite();
 
 		Log.i(MyPressureService.NOTIFICATION+"sc",json.length()+"");
@@ -105,7 +97,6 @@ public class SyncDBTask extends AsyncTask<Integer, Integer, Boolean> {
 		byte[] fooGzippedBytes = baos.toByteArray();
 		byteArrayEntity = new ByteArrayEntity(fooGzippedBytes);
 
-
 		//sets the post request as the resulting string
 
 		httpPost.setEntity(byteArrayEntity);
@@ -130,6 +121,5 @@ public class SyncDBTask extends AsyncTask<Integer, Integer, Boolean> {
 		}
 
 		return response;
-
 	}
 }

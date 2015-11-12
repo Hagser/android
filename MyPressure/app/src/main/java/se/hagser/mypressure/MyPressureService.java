@@ -105,7 +105,22 @@ public class MyPressureService extends Service implements SensorEventListener {
         lat=getSubstring(location.getLatitude()+"",10);
 		lng=getSubstring(location.getLongitude()+"",10);
 		alt=getSubstring(location.getAltitude()+"",10);
-		
+		Log.i("newlocation",lat+","+lng+","+lastval);
+
+		if(lastval>800) {
+			try {
+				pressure = lastval + "";
+				String at = getDefaultDateTime();
+
+				UpdateDbTask task = new UpdateDbTask(mDbHelper);
+
+				final WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+				bWifi = (wifi.isWifiEnabled() && wifi.getConnectionInfo() != null);
+
+				task.execute(at, pressure, lat, lng, alt, bWifi + "");
+			} catch (Exception ex) {
+			}
+		}
 	}
 	private String getSubstring(String string, int ilen) {
 		return string.substring(0, Math.min(ilen, string.length()));
@@ -127,10 +142,10 @@ public class MyPressureService extends Service implements SensorEventListener {
 
 		long ts = event.timestamp;
 		float val = Math.round(event.values[0]);
-		if(ts-last>100000000||(lastval>0&&Math.abs(lastval-val)>1))
+		if(ts-last>1000000000||(lastval>0&&Math.abs(lastval-val)>1))
 		{	
 			last=ts;
-			boolean balert = Math.abs(lastval-val)>4;
+			boolean balert = (lastval>0&&Math.abs(lastval-val)>4);
 			lastval=val;
 			if(event.sensor.getType()==Sensor.TYPE_PRESSURE)
 			{
