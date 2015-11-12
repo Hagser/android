@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 		startService(intent);
 
 		msg = (EditText)findViewById(R.id.msg);
+
 		msg.setOnKeyListener(new View.OnKeyListener() {
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -68,11 +70,15 @@ public class MainActivity extends AppCompatActivity {
 		{}
 		super.onPause();
 	}
-
+long lastSend=0;
 	private void sendChat(String message) {
-		Intent intentChat = new Intent(MyChatService.RESULT_CH);
-		intentChat.putExtra("msg",message);
-		sendBroadcast(intentChat);
+		long now = Calendar.getInstance().getTimeInMillis();
+		if((now-lastSend)>1000) {
+			Intent intentChat = new Intent(MyChatService.RESULT_CH);
+			intentChat.putExtra("msg", message);
+			sendBroadcast(intentChat);
+			lastSend=now;
+		}
 	}
 	private BroadcastReceiver getBR() {
 		return new BroadcastReceiver() {
