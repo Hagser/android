@@ -68,6 +68,10 @@ public class MyChatService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		//MainActivity.LooG("service", "onStartCommand");
+		if(intent!=null)
+			if(intent.hasExtra("lastDate"))
+				lastDate=intent.getStringExtra("lastDate");
+
 		devid = Calendar.getInstance().getTimeInMillis()+"";
 		broadcastReceiver = getBR();
 		getOnline();
@@ -119,7 +123,7 @@ public class MyChatService extends Service {
 		super.onDestroy();
 	}
 	private void getOnline() {
-		Log.i("service", "getOnline:1");
+		//Log.i("service", "getOnline:1");
 
 		String surl = "http://php.hagser.se/jsonc.php?online=1";
 		AsyncTask<String,Integer,Integer> asyncTask = new AsyncTask<String, Integer, Integer>() {
@@ -128,7 +132,7 @@ public class MyChatService extends Service {
 				boolean bDone = false;
 				int iRetries = 0;
 				while(!bDone && iRetries<4) {
-					//bDone=true;
+					bDone=true;
 					try {
 						URL url = new URL(params[0]);
 						HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -154,10 +158,10 @@ public class MyChatService extends Service {
 
 						Intent intent_info = new Intent(RESULT_OK);
 						intent_info.putExtra(RESULT_OL,"");
-						intent_info.putExtra("onlineList",onlinelist);
+						intent_info.putExtra("onlineList", onlinelist);
 						sendBroadcast(intent_info);
 
-						Log.i("service", "sendBroadcast:" + onlinelist.size());
+						//Log.i("service", "sendBroadcast:" + onlinelist.size());
 
 						bDone=true;
 
@@ -167,7 +171,7 @@ public class MyChatService extends Service {
 					finally {
 						iRetries++;
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -181,7 +185,7 @@ public class MyChatService extends Service {
 		asyncTask.execute(surl);
 	}
 	private void getChat() {
-		Log.i("service", "getChat:" + lastDate);
+		//Log.i("service", "getChat:" + lastDate);
 
 		String surl = "http://php.hagser.se/jsonc.php?lastDate=" + lastDate.replace(" ","%20");
 
@@ -191,7 +195,7 @@ public class MyChatService extends Service {
 				boolean bDone = false;
 				int iRetries = 0;
 				while(!bDone && iRetries<4) {
-					//bDone=true;
+					bDone=true;
 					try {
 						URL url = new URL(params[0]);
 						HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -249,8 +253,9 @@ public class MyChatService extends Service {
 					}
 					finally {
 						iRetries++;
+
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -263,7 +268,6 @@ public class MyChatService extends Service {
 		};
 		asyncTask.execute(surl);
 	}
-
 	private void showNotification(String message) {
 		NotificationCompat.Builder builder =
 				new NotificationCompat.Builder(this)
@@ -274,8 +278,7 @@ public class MyChatService extends Service {
 
 		Intent notificationIntent = new Intent(this, MainActivity.class);
 
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-				PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		builder.setSound(alarmSound);
 		builder.setContentIntent(contentIntent);
@@ -288,8 +291,8 @@ public class MyChatService extends Service {
 		NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		manager.notify(1, builder.build());
 	}
-	private void sendChat(String message)
-	{
+	long lastSend=0;
+	private void sendChat(String message) {
 		mymsg=message;
 		Log.i("service", "sendChat:" + message);
 
@@ -299,7 +302,7 @@ public class MyChatService extends Service {
 				boolean bDone = false;
 				int iRetries = 0;
 				while(!bDone && iRetries<4) {
-					//bDone=true;
+					bDone=true;
 					try {
 						URL url = new URL("http://php.hagser.se/saveChat.php");
 						Log.i("url",url.getPath());
@@ -348,12 +351,13 @@ public class MyChatService extends Service {
 							//Log.i("sendLocation-resp_code", resp_code + "");
 							bDone=true;
 						} catch (Exception ex) {
-
+/*
 							try {
 								Thread.sleep(5000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+*/
 							ex.printStackTrace();
 						} finally {
 							iRetries++;
@@ -373,7 +377,11 @@ public class MyChatService extends Service {
 				return bDone?1:0;
 			}
 		};
-		asyncTask.execute(message);
+		long now = Calendar.getInstance().getTimeInMillis();
+		if((now-lastSend)>2000) {
+			asyncTask.execute(message);
+			lastSend=now;
+		}
 	}
 
 	@Override

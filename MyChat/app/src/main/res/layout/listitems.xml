@@ -2,10 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" android:layout_margin="0dp"
-    android:orientation="horizontal" >
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="30dp" android:id="@+id/ol" android:clickable="false"/>
+    android:orientation="horizontal"
+              android:background="@android:color/background_dark">
     <TextView
         android:id="@+id/at"
         android:layout_width="51dp"
@@ -13,16 +11,17 @@
         android:layout_marginStart="2dp"
         android:textSize="10sp"
         android:textAlignment="gravity"
-        android:gravity="center|start"/>
+        android:gravity="center|start"
+        android:textColor="@android:color/darker_gray"/>
     <TextView
         android:id="@+id/ms"
         android:layout_width="0dp" android:textSize="12sp"
         android:layout_marginStart="2dp" android:layout_height="30dp" android:layout_gravity="start"
         android:layout_weight="0.60"
-        android:elegantTextHeight="false"/>
+        android:elegantTextHeight="false" android:textColor="@android:color/darker_gray"/>
     <TextView
         android:id="@+id/ip"
         android:layout_width="wrap_content" android:textSize="8sp"
         android:layout_marginStart="2dp" android:layout_height="30dp" android:layout_gravity="end"
-        android:gravity="center|end"/>
+        android:gravity="center|end" android:textColor="@android:color/darker_gray"/>
 </LinearLayout>

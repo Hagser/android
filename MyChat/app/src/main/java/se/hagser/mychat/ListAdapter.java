@@ -46,7 +46,6 @@ public class ListAdapter extends BaseAdapter {
         TextView at = (TextView)vi.findViewById(R.id.at);
         TextView ms = (TextView)vi.findViewById(R.id.ms);
         TextView ip = (TextView)vi.findViewById(R.id.ip);
-        RadioButton ol = (RadioButton)vi.findViewById(R.id.ol);
 
         HashMap<String, String> song;
         song = data.get(position);
@@ -54,22 +53,25 @@ public class ListAdapter extends BaseAdapter {
         at.setText(song.get("at"));
         ms.setText(song.get("ms"));
         ip.setText(song.get("ip"));
-        ol.setChecked((song.containsKey("ol")));
+        boolean bOl=song.containsKey("ol");
 
-        /*
         int seekR=100;
 		int seekG=0;
 		int seekB=0;
-		int ired = 0xff000000 + seekR * 0x10000 + seekG * 0x100 + seekB;
+        int iblack = 0xff000000;
+        int igray = 0xffaaaaaa;
+
+		int ired = iblack + seekR * 0x10000 + seekG * 0x100 + seekB;
 		seekR=100;seekG=100;seekB=0;
-		int iyellow = 0xff000000 + seekR * 0x10000 + seekG * 0x100 + seekB;
+		int iyellow = iblack + seekR * 0x10000 + seekG * 0x100 + seekB;
 
 		seekR=0;seekG=100;seekB=0;
-		int igreen = 0xff000000 + seekR * 0x10000 + seekG * 0x100 + seekB;
+		int igreen = iblack + seekR * 0x10000 + seekG * 0x100 + seekB;
 
-        int color = (f<1000?ired:(f<3000?iyellow:igreen));
-		vi.setBackgroundColor(color);
-		*/
+        //int color = (f<1000?ired:(f<3000?iyellow:igreen));
+		//vi.setBackgroundColor(color);
+        ip.setTextColor((bOl?igreen:igray));
+
         return vi;
     }
 }
